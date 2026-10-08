@@ -1,6 +1,19 @@
 let timeLeft=25*60;
 let timerInterval=null;
-let studySeconds=0;
+function getToday(){
+    return new Date().toLocaleDateString("en-CA");
+}
+let savedDate=localStorage.getItem("studyDate");
+let studySeconds=Number(localStorage.getItem("studySeconds"))||0;
+if(savedDate!==getToday()){
+    studySeconds=0;
+    localStorage.setItem("studySeconds",0);
+    localStorage.setItem("studyDate",getToday());
+}
+function updateStudyTime(){
+    let minutesStudied=Math.floor(studySeconds/60);
+    document.getElementById("studyTime").textContent=minutesStudied+" min";
+}
 function updateTimer(){
     let minutes=Math.floor(timeLeft/60);
     let seconds=timeLeft % 60;
@@ -17,6 +30,9 @@ function startTimer(){
         if(timeLeft>0){
             timeLeft--;
             studySeconds++;
+            localStorage.setItem("studySeconds",studySeconds);
+            localStorage.setItem("studyDate",getToday());
+            updateStudyTime();
             updateTimer();
         }else{
             clearInterval(timerInterval);
@@ -36,3 +52,4 @@ function resetTimer(){
     updateTimer();
 }
 updateTimer();
+updateStudyTime();
