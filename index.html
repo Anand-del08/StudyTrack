@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StudyTrack</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>StudyTrack</h1>
+        <p>Your personal study manager</p>
+        <div class="welcome">
+            <h2>Welcome,Student! 👋</h2>
+            <p> Track your subjects,study time,and daily tasks.</p>
+        </div>
+        <div class="dashboard">
+            <div class="card">
+                <h3>Study Timer</h3>
+                <p id="timer">25:00</p>
+                <button oneclick="startTimer()">Start</button>
+                <button oneclick="pauseTimer()">Pause</button>
+                <button oneclick="resetTimer()">Reset</button>
+            </div>
+
+            <div class="card">
+                <h3>Today's Study</h3>
+                <p class="number" id="studyTime">0 min</p>
+            </div>
+            <div class="card">
+                <h3>Subjects</h3>
+                <p class="number">0</p>
+            </div>
+            <div class="card">
+                <h3>Tasks Completed</h3>
+                <p class="number">0</p>
+            </div>
+            
+            
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
