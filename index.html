@@ -16,9 +16,9 @@
             <div class="card">
                 <h3>Study Timer</h3>
                 <p id="timer">25:00</p>
-                <button oneclick="startTimer()">Start</button>
-                <button oneclick="pauseTimer()">Pause</button>
-                <button oneclick="resetTimer()">Reset</button>
+                <button onclick="startTimer()">Start</button>
+                <button onclick="pauseTimer()">Pause</button>
+                <button onclick="resetTimer()">Reset</button>
             </div>
 
             <div class="card">
@@ -27,11 +27,34 @@
             </div>
             <div class="card">
                 <h3>Subjects</h3>
-                <p class="number">0</p>
+                <p class="number"
+                id="subjectCount">0</p>
+                <form id="subjectForm">
+                    <input
+                    type="text"
+                    id="subjectInput"
+                    placeholder="Enter subject name"
+                    maxlength="50"
+                    required
+                    >
+                    <button type="submit">Add Subject</button>
+                </form>
+                <ul id="subjectList"></ul>
             </div>
             <div class="card">
-                <h3>Tasks Completed</h3>
-                <p class="number">0</p>
+                <h3>Tasks</h3>
+                <p class="number" id="taskCount">0</p>
+                <form id="taskForm">
+                    <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="Enter a task"
+                    maxlength="100"
+                    required
+                    >
+                    <button type ="submit">Add Task</button>
+                </form>
+                <ul id="taskList"></ul>
             </div>
             
             

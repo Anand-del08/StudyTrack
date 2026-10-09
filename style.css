@@ -170,3 +170,27 @@ button:focus-visible{
         transform:none;
     }
 }
+.card ul{
+    list-style:none;
+    padding:0;
+    margin-top:18px;
+}
+.card li{
+    background:#f5f6ff;
+    margin:8px 0;
+    padding:10px;
+    border-radius:10px;
+    text-align:left;
+    word-break:break-word;
+}
+.card li button{
+    float:right;
+    padding:6px 10px;
+    margin:0 0 0 5px;
+    font-size:12px;
+}
+.card li::after{
+    content:"";
+    display:block;
+    clear:both;
+}
