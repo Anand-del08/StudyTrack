@@ -194,3 +194,9 @@ button:focus-visible{
     display:block;
     clear:both;
 }
+#timerMessage{
+    margin-top:10px;
+    font-size:14px;
+    font-weight:600;
+    color:#4f46e5;
+}

@@ -37,6 +37,8 @@ function startTimer(){
         }else{
             clearInterval(timerInterval);
             timerInterval=null;
+            document.getElementById("timerMessage").textContent="🎉Study session completed! Great job!";
+
             alert("Study session completed!");
         }
     },1000);
@@ -163,3 +165,12 @@ taskForm.addEventListener("submit",function(event){
 })
 displayTasks();
 
+function clearCompletedTasks(){
+    tasks=tasks.filter(function(task){
+        return!task.completed;
+    });
+    localStorage.setItem(
+        "tasks",JSON.stringify(tasks)
+    );
+    displayTasks();
+}

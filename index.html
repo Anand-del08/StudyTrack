@@ -14,8 +14,9 @@
         </div>
         <div class="dashboard">
             <div class="card">
-                <h3>Study Timer</h3>
+                <h3>Study Timer ⏱️</h3>
                 <p id="timer">25:00</p>
+                <p id="timerMessage"></p>
                 <button onclick="startTimer()">Start</button>
                 <button onclick="pauseTimer()">Pause</button>
                 <button onclick="resetTimer()">Reset</button>
@@ -55,6 +56,7 @@
                     <button type ="submit">Add Task</button>
                 </form>
                 <ul id="taskList"></ul>
+                <button onclick="clearCompletedTasks()">Clear Completed</button>
             </div>
             
             
