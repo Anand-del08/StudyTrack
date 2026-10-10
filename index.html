@@ -9,7 +9,7 @@
         <h1>StudyTrack</h1>
         <p>Your personal study manager</p>
         <div class="welcome">
-            <h2>Welcome,Student! 👋</h2>
+            <h2>Welcome, Student! 👋</h2>
             <p> Track your subjects,study time,and daily tasks.</p>
         </div>
         <div class="dashboard">
@@ -25,6 +25,7 @@
             <div class="card">
                 <h3>Today's Study 📚</h3>
                 <p class="number" id="studyTime">0 min</p>
+                <p id="studyGoal">0 / 60 min studied</p>
             </div>
             <div class="card">
                 <h3>Subjects 📚</h3>
@@ -39,14 +40,15 @@
                     maxlength="50"
                     required
                     >
-                    <button type="submit">Add Subject</button>
+                    <button type="submit">➕ Add Subject</button>
                 </form>
                 <ul id="subjectList"></ul>
+                <button onclick="clearAllSubjects()">Clear All Subjects</button>
             </div>
             <div class="card">
                 <h3>Tasks ✅</h3>
                 <p class="number" id="taskCount">0</p>
-                <p id="taskProgress">0/0 completed</p>
+                <p id="taskProgress">0 / 0 completed</p>
                 <form id="taskForm">
                     <input
                     type="text"
@@ -55,7 +57,7 @@
                     maxlength="100"
                     required
                     >
-                    <button type ="submit">Add Task</button>
+                    <button type ="submit">➕ Add Task</button>
                 </form>
                 <ul id="taskList"></ul>
                 <button onclick="clearCompletedTasks()">Clear Completed</button>

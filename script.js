@@ -13,6 +13,7 @@ if(savedDate!==getToday()){
 function updateStudyTime(){
     let minutesStudied=Math.floor(studySeconds/60);
     document.getElementById("studyTime").textContent=minutesStudied+" min";
+    document.getElementById("studyGoal").textContent=minutesStudied+"/60 min studied";
 }
 function updateTimer(){
     let minutes=Math.floor(timeLeft/60);
@@ -80,7 +81,7 @@ function displaySubject(){
         subjectList.appendChild(li);
     });
     subjectCount.textContent=subjects.length;
-    document.getElementById("subjectMessage").textContent=subjets.length+(subjects.length===1 ? "subject added":"subjects added");
+    document.getElementById("subjectMessage").textContent=subjects.length+(subjects.length === 1 ? " subject added":" subjects added");
 }
 subjectForm.addEventListener("submit",function(event){
     event.preventDefault();
@@ -144,7 +145,7 @@ function displayTasks(){
         taskList.appendChild(li);
     });
     const completedTasks=tasks.filter(
-        function(tasks){
+        function(task){
             return task.completed;
         }
     ).length;
@@ -162,6 +163,13 @@ taskForm.addEventListener("submit",function(event){
         name:taskName,
         completed:false
     };
+    if(tasks.some(function(task){
+        return task.name.toLowerCase()===taskName.toLowerCase();
+
+    })){
+        alert("This task already exists!");
+        return;
+    }
     tasks.push(newTask);
     localStorage.setItem(
         "tasks",
@@ -188,4 +196,10 @@ function clearAllTasks(){
         JSON.stringify(tasks)
     );
     displayTasks();
+}
+function clearAllSubjects(){
+    subjects=[];
+    localStorage.setItem("subjects",JSON.stringify(subjects)
+    );
+    displaySubject();
 }
