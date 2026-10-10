@@ -80,12 +80,17 @@ function displaySubject(){
         subjectList.appendChild(li);
     });
     subjectCount.textContent=subjects.length;
+    document.getElementById("subjectMessage").textContent=subjets.length+(subjects.length===1 ? "subject added":"subjects added");
 }
-
 subjectForm.addEventListener("submit",function(event){
     event.preventDefault();
     const subjectName=subjectInput.value.trim();
     if (subjectName===""){
+        return;
+    }
+    if
+    (subjects.includes(subjectName)){
+        alert("This subject already exists!");
         return;
     }
     subjects.push(subjectName);
@@ -138,11 +143,13 @@ function displayTasks(){
         li.appendChild(deleteButton);
         taskList.appendChild(li);
     });
-    taskCount.textContent=tasks.filter(
-        function(task){
+    const completedTasks=tasks.filter(
+        function(tasks){
             return task.completed;
         }
     ).length;
+    taskCount.textContent=completedTasks;
+    document.getElementById("taskProgress").textContent=completedTasks + " / "+tasks.length +" completed";
 }
 
 taskForm.addEventListener("submit",function(event){
@@ -171,6 +178,14 @@ function clearCompletedTasks(){
     });
     localStorage.setItem(
         "tasks",JSON.stringify(tasks)
+    );
+    displayTasks();
+}
+function clearAllTasks(){
+    tasks=[];
+    localStorage.setItem(
+        "tasks",
+        JSON.stringify(tasks)
     );
     displayTasks();
 }

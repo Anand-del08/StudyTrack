@@ -178,10 +178,11 @@ button:focus-visible{
 .card li{
     background:#f5f6ff;
     margin:8px 0;
-    padding:10px;
+    padding:12px;
     border-radius:10px;
     text-align:left;
     word-break:break-word;
+    border:1px solid #e4e7fb
 }
 .card li button{
     float:right;
@@ -199,4 +200,47 @@ button:focus-visible{
     font-size:14px;
     font-weight:600;
     color:#4f46e5;
+}
+.card input{
+    width:100%;
+    padding:10px 12px;
+    margin:8px 0;
+    border:1px solid #d9ddf5;
+    border-radius:8px;
+    font-size:14px;
+    outline:none;
+}
+.card input:focus{
+    border-color:#4f46e5;
+}
+.card form button{
+    width:100%;
+    margin:8px 0 0;
+}
+@media(max-width: 520px){
+    .card form button{
+        width:100%;
+    }
+    .card li button{
+        float:none;
+        margin-top:8px;
+    }
+}
+#timer + #timerMessage{
+    min-height:20px;
+}
+.card:first-child button{
+    min-width:70px;
+}
+#taskProgress{
+    margin:5px 0 12px;
+    font-size:13px;
+    color:#69708c;
+    font-weight:600;
+}
+#subjectMessage{
+    margin:5px 0 12px;
+    font-size:13px;
+    color:#69708c;
+    font-weight:600;
 }

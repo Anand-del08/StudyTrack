@@ -23,13 +23,14 @@
             </div>
 
             <div class="card">
-                <h3>Today's Study</h3>
+                <h3>Today's Study 📚</h3>
                 <p class="number" id="studyTime">0 min</p>
             </div>
             <div class="card">
-                <h3>Subjects</h3>
+                <h3>Subjects 📚</h3>
                 <p class="number"
                 id="subjectCount">0</p>
+                <p id="subjectMessage">0 subjects added</p>
                 <form id="subjectForm">
                     <input
                     type="text"
@@ -43,8 +44,9 @@
                 <ul id="subjectList"></ul>
             </div>
             <div class="card">
-                <h3>Tasks</h3>
+                <h3>Tasks ✅</h3>
                 <p class="number" id="taskCount">0</p>
+                <p id="taskProgress">0/0 completed</p>
                 <form id="taskForm">
                     <input
                     type="text"
@@ -57,6 +59,7 @@
                 </form>
                 <ul id="taskList"></ul>
                 <button onclick="clearCompletedTasks()">Clear Completed</button>
+                <button onclick="clearAllTasks()">Clear All Tasks</button>
             </div>
             
             
