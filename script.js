@@ -14,6 +14,17 @@ function updateStudyTime(){
     let minutesStudied=Math.floor(studySeconds/60);
     document.getElementById("studyTime").textContent=minutesStudied+" min";
     document.getElementById("studyGoal").textContent=minutesStudied+"/60 min studied";
+    let progress=(minutesStudied/60)*100;
+    if(progress>100){
+        progress=100;
+    }
+    document.getElementById("studyProgress").style.width=progress+"%";
+    document.getElementById("studyPercentage").textContent=Math.floor(progress)+"% complete";
+    if(minutesStudied >= 60){
+    document.getElementById("studyGoalMessage").textContent="Daily study goal completed!"
+    }else{
+    document.getElementById("studyGoalMessage").textContent="Keep going! You can reach your goal!";
+    }
 }
 function updateTimer(){
     let minutes=Math.floor(timeLeft/60);
@@ -203,3 +214,13 @@ function clearAllSubjects(){
     );
     displaySubject();
 }
+function displayTodayDate(){
+    const today=new Date();
+    document.getElementById("todayDate").textContent=
+    today.toLocaleDateString("en-IN",{
+        day:"numeric",
+        month:"short",
+        year:"numeric"
+    });
+}
+displayTodayDate();
