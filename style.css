@@ -278,7 +278,7 @@ body.dark-mode{
 body.dark-mode .container>p{
     color:#d1d5db;
 }
-body.dark.mode .card{
+body.dark-mode .card{
     background:#1f2937;
     border-color:#374151;
 }
@@ -298,4 +298,19 @@ body.dark-mode #taskProgress,
 body.dark-mode #subjectMessage,
 body.dark-mode #studyGoal{
     color:#d1d5db;
+}
+
+#taskProgressBar{
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,#4f46e5,#7c3aed);
+    border-radius:10px;
+    transition:width 0.3s ease;
+}
+#subjectProgressBar{
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,#4f46e5,#7c3aed);
+    border-radius:10px;
+    transition:width 0.3s ease;
 }

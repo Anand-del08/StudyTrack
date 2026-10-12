@@ -24,6 +24,11 @@
                 <ul id="studyHistoryList"></ul>
             </div>
             <div class="card">
+                <h3> Weekly Summary</h3>
+                <p id="weeklyTotal">0 min total</p>
+                <p id="weeklyAverage">0 min average per day</p>
+            </div>
+            <div class="card">
                 <h3>Study Timer ⏱️</h3>
                 <p id="timer">25:00</p>
                 <p id="timerMessage"></p>
@@ -56,6 +61,9 @@
                 <p class="number"
                 id="subjectCount">0</p>
                 <p id="subjectMessage">0 subjects added</p>
+                <div class="progress-container">
+                    <div id="subjectProgressBar"></div>
+                </div>
                 <form id="subjectForm">
                     <input
                     type="text"
@@ -73,6 +81,9 @@
                 <h3>Tasks ✅</h3>
                 <p class="number" id="taskCount">0</p>
                 <p id="taskProgress">0 / 0 completed</p>
+                <div class="progress-container">
+                    <div id="taskProgressBar"></div>
+                </div>
                 <form id="taskForm">
                     <input
                     type="text"

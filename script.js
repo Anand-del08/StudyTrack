@@ -48,6 +48,8 @@ function startTimer(){
             localStorage.setItem("studyDate",getToday());
             updateStudyTime();
             updateTimer();
+            displayStudyHistory();
+            displayWeeklySummary();
         }else{
             clearInterval(timerInterval);
             timerInterval=null;
@@ -95,6 +97,11 @@ function displaySubject(){
     });
     subjectCount.textContent=subjects.length;
     document.getElementById("subjectMessage").textContent=subjects.length+(subjects.length === 1 ? " subject added":" subjects added");
+    let subjectPercentage=(subjects.length/10)*100;
+    if(subjectPercentage>100){
+        subjectPercentage=100;
+    }
+    document.getElementById("subjectProgressBar").style.width=subjectPercentage+"%";
 }
 subjectForm.addEventListener("submit",function(event){
     event.preventDefault();
@@ -164,6 +171,11 @@ function displayTasks(){
     ).length;
     taskCount.textContent=completedTasks;
     document.getElementById("taskProgress").textContent=completedTasks + " / "+tasks.length +" completed";
+    let taskPercentage=0;
+    if(tasks.length>0){
+        taskPercentage=(completedTasks/tasks.length)*100;
+    }
+    document.getElementById("taskProgressBar").style.width=taskPercentage+"%";
 }
 
 taskForm.addEventListener("submit",function(event){
@@ -238,7 +250,7 @@ function toggleDarkMode(){
             button.textContent="🌙 Dark Mode";
     }
 }
-if(localStorage.setItem("darkMode")==="enabled"){
+if(localStorage.getItem("darkMode")==="enabled"){
     document.body.classList.add("dark-mode");
     document.getElementById("darkModeButton").textContent="☀️ Light Mode";
 }
@@ -269,15 +281,28 @@ function displayStudyHistory(){
         const savedSeconds=Number(localStorage.getItem("studyHistory_"+dateKey)) || 0;
         const minutes=Math.floor(savedSeconds/60);
         const li=document.createElement("li");
-        li.textContent=date;toLocaleDateString("en-IN",{
+        li.textContent = date.toLocaleDateString("en-IN",{
             day:"numeric",
             month:"short"
-        }) + " - " +" min";
+        }) + " - " + minutes + " min";
         historyList.appendChild(li);
     }
 }
 displayStudyHistory();
                     
-        
-    
-        
+function displayWeeklySummary(){
+    let totalSeconds=0;
+    const today=new Date();
+    for(let i=0;i<7;i++){
+        const Date=new date(today);
+        date.setDate(today.getDate()-i);
+        const dateKey=date.toLocaleDateString("en-CA");
+        const savedSeconds=Number(localStorage.getItem("studyHistory_"+dateKey)) || 0;
+        totalSeconds +=savedSeconds;
+    }
+    const totalMinutes=Math.floor(totalSeconds/60);
+    const averageMinutes=Math.floor(totalMinutes/7);
+    document.getElementById("weeklyTotal").textContent=totalMinutes+" min total";
+    document.getElementById("weeklyAverage").textContent=averageMinutes+" min average per day";
+}
+displayWeeklySummary();
