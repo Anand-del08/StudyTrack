@@ -5,6 +5,7 @@ function getToday(){
 }
 let savedDate=localStorage.getItem("studyDate");
 let studySeconds=Number(localStorage.getItem("studySeconds"))||0;
+let studyGoalMinutes=Number(localStorage.getItem("studyGoalMinutes")) || 60;
 if(savedDate!==getToday()){
     studySeconds=0;
     localStorage.setItem("studySeconds",0);
@@ -13,14 +14,14 @@ if(savedDate!==getToday()){
 function updateStudyTime(){
     let minutesStudied=Math.floor(studySeconds/60);
     document.getElementById("studyTime").textContent=minutesStudied+" min";
-    document.getElementById("studyGoal").textContent=minutesStudied+"/60 min studied";
-    let progress=(minutesStudied/60)*100;
+    document.getElementById("studyGoal").textContent=minutesStudied+"/"+studyGoalMinutes+" min studied";
+    let progress=(minutesStudied/studyGoalMinutes)*100;
     if(progress>100){
         progress=100;
     }
     document.getElementById("studyProgress").style.width=progress+"%";
     document.getElementById("studyPercentage").textContent=Math.floor(progress)+"% complete";
-    if(minutesStudied >= 60){
+    if(minutesStudied >= studyGoalMinutes){
     document.getElementById("studyGoalMessage").textContent="Daily study goal completed!"
     }else{
     document.getElementById("studyGoalMessage").textContent="Keep going! You can reach your goal!";
@@ -43,6 +44,7 @@ function startTimer(){
             timeLeft--;
             studySeconds++;
             localStorage.setItem("studySeconds",studySeconds);
+            localStorage.setItem("studyHistory_" + getToday(), studySeconds);
             localStorage.setItem("studyDate",getToday());
             updateStudyTime();
             updateTimer();
@@ -240,6 +242,41 @@ if(localStorage.setItem("darkMode")==="enabled"){
     document.body.classList.add("dark-mode");
     document.getElementById("darkModeButton").textContent="☀️ Light Mode";
 }
+
+function saveStudyGoal(){
+    const goalInput=document.getElementById("goalInput");
+    const newGoal=Number(goalInput.value);
+    if(newGoal<1 || newGoal >600){
+        alert("Please enter a goal between 1 and 600 minutes.");
+        return;
+    }
+    studyGoalMinutes=newGoal;
+    localStorage.setItem("studyGoalMinutes",studyGoalMinutes);
+    updateStudyTime();
+    alert("Daily study goal saved!");
+
+}
+document.getElementById("goalInput").value=studyGoalMinutes;
+
+function displayStudyHistory(){
+    const historyList=document.getElementById("studyHistoryList");
+    historyList.innerHTML="";
+    const today=new Date();
+    for(let i=0;i<7;i++){
+        const date=new Date(today);
+        date.setDate(today.getDate()-i);
+        const dateKey=date.toLocaleDateString("en-CA");
+        const savedSeconds=Number(localStorage.getItem("studyHistory_"+dateKey)) || 0;
+        const minutes=Math.floor(savedSeconds/60);
+        const li=document.createElement("li");
+        li.textContent=date;toLocaleDateString("en-IN",{
+            day:"numeric",
+            month:"short"
+        }) + " - " +" min";
+        historyList.appendChild(li);
+    }
+}
+displayStudyHistory();
                     
         
     
